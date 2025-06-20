@@ -26,11 +26,11 @@ const Home = () => {
             key={course._id}
             className='hover:shadow-lg transition-shadow rounded-md'
           >
-            <CardHeader className='p-0'>
+            <CardHeader className='p-0 m-0'>
               <img
                 src={`${baseURL}/uploads/${course.image}`}
                 alt={course.title}
-                className='w-full h-48 object-cover rounded-t-md'
+                className='w-full object-cover rounded-t-md'
               />
             </CardHeader>
             <CardTitle className='text-lg font-semibold px-4 pt-4'>
