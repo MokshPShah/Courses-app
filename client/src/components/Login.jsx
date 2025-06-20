@@ -84,13 +84,13 @@ const Login = () => {
   return (
     <>
       <div className='flex items-center justify-center min-h-screen bg-gray-100 px-4'>
-        <Card className='w-full max-w-md shadow-xl rounded-2xl'>
+        <Card className='w-full max-w-md shadow-xl rounded-2xl py-10'>
           <CardHeader>
             <CardTitle className='text-2xl text-center'>Admin Login</CardTitle>
           </CardHeader>
           <CardContent>
             {renderAlert()}
-            <form onSubmit={handleSubmit} className='space-y-4'>
+            <form onSubmit={handleSubmit} className='space-y-7'>
               <div className='space-y-1'>
                 <Label htmlFor='username'>Username</Label>
                 <Input
