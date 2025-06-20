@@ -1,17 +1,26 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import './App.css'
-import ViewAll from './Pages/ViewAll';
-import Form from './Pages/Form';
-import View from './Pages/View';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Login from './components/Login'
+import AdminDashboard from './pages/AdminDashboard'
+import ProtectedRoute from './components/ProtectedRoute'
+import { Toaster } from '@/components/ui/sonner'
 
 function App () {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<ViewAll />} />
-          <Route path="/add" element={<Form />} />
-          <Route path="/view/:id" element={<View />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/admin' element={<Login />} />
+          <Route
+            path='/dashboard'
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+                <Toaster position='top-right' richColors />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </>

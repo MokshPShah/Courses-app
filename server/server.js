@@ -1,23 +1,25 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
 const connectDB = require('./config/db')
 
-const dotenv = require('dotenv');
-dotenv.config();
+const dotenv = require('dotenv')
+dotenv.config()
 
-const cors = require('cors');
-const router = require('./routers/routes')
+const cors = require('cors')
+const path = require('path')
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT
 
-connectDB();
+app.use(cors())
+app.use(express.json())
+app.use('/uploads', express.static('uploads'))
 
-app.use(cors());
-app.use(express.json());
-// app.use('/', router)
-// app.use('/uploads', express.static('uploads'));
+connectDB()
 
-app.listen(PORT, ()=>{
-    console.log(`App is running on ${PORT}`);
-});
+app.use('/api/courses', require('./routes/courses'))
+app.use('/api/admin', require('./routes/admin'))
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
