@@ -3,16 +3,16 @@ const router = express.Router();
 const Course = require('../models/courses');
 const auth = require('../middleware/auth');
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../config/cloudinary');
 
-// Multer config
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
+// Setup multer with cloudinary config
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params:{
+    folder: 'courses',
+    allowed_formats: ['jpg', 'png', 'jpeg']
+  }
 });
 const upload = multer({ storage });
 
